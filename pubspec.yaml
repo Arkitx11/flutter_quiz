@@ -39,6 +39,8 @@ dependencies:
   firebase_core:
   bottom_bar_matu: ^1.5.0
   flutter_material_design_icons: ^1.1.7447
+  firebase_auth:
+  get_phone_number: ^3.0.10
 
 dev_dependencies:
   flutter_test:
@@ -49,7 +51,7 @@ dev_dependencies:
   # activated in the `analysis_options.yaml` file located at the root of your
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
-  flutter_lints: ^4.0.0
+  flutter_lints: ^5.0.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
