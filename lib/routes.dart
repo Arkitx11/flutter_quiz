@@ -1,10 +1,12 @@
-import 'package:flutter/material.dart';
-import 'ui.dart';
+import 'package:flutter_quiz/landing/landing.dart';
+import 'package:flutter_quiz/setting/setting.dart';
 
-var appRoutes = {
-  '/': (context) => const HomeScreen(),
-  '/topics': (context) => const TopicsScreen(),
-  '/settings': (context) => const SettingScreen(),
+import 'home/home.dart';
+import 'login/login.dart';
+
+var routes = {
+  '/': (context) => LandingScreen(),
+  '/login': (context) => LoginScreen(),
+  '/home': (context) => HomeScreen(),
+  '/about/settings': (context) => SettingScreen(),
 };
-
-final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();

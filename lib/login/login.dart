@@ -1,88 +1,55 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_quiz/shared/quiz_model.dart';
+import 'package:flutter_quiz/services/auth.dart';
+import 'package:ionicons/ionicons.dart';
 
 class LoginScreen extends StatelessWidget {
-  final QuizModel quizModel;
-  AsyncSnapshot<User?> loginSnapshot;
-
-  LoginScreen({super.key, required this.loginSnapshot, required this.quizModel});
+  const LoginScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    if (loginSnapshot.connectionState == ConnectionState.waiting) {
-      return const Center(child: CircularProgressIndicator());
-    } else if (loginSnapshot.hasError) {
-      return LoginButton(
-        response: 'Error',
-        responseColor: Colors.red,
-        quizModel: quizModel,
-      );
-    } else {
-      return LoginButton(
-        response: 'Login to continue',
-        responseColor: Colors.black,
-        quizModel: quizModel,
-      );
-    }
-  }
-}
-
-class LoginButton extends StatelessWidget {
-  final String response;
-  final Color responseColor;
-  final QuizModel quizModel;
-  const LoginButton({super.key, required this.response, required this.responseColor, required this.quizModel});
-
-  @override
-  Widget build(BuildContext context) {
-    return Center(
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          ElevatedButton(
-            onPressed: () {
-              quizModel.getPhoneNumber();
-
-            },
-            child: Row(mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-              Icon(Icons.phone, ),
-              const SizedBox(width: 10),
-              Text('Phone'),
-            ],),
+    return Scaffold(
+        body: Center(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Image(
+                image: AssetImage('images/icon_flutter.png'),
+                width: 125,
+                height: 125,
+              ),
+              SizedBox(
+                height: 24,
+              ),
+              Row(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  IconButton.outlined(
+                    onPressed: () => Authentication().nativeGoogleSignIn(),
+                    icon: Icon(
+                      Ionicons.logo_google,
+                      semanticLabel: 'Sign in With Google',
+                    ),
+                  ),
+                  SizedBox(
+                    width: 8,
+                  ),
+                  IconButton.outlined(
+                    onPressed: () {
+                      Authentication().signInAnonymously();
+                    },
+                    icon: Icon(
+                      Ionicons.logo_android,
+                      semanticLabel: 'Anonymous Login',
+                    ),
+                  ),
+                ],
+              )
+            ],
           ),
-          const SizedBox(height: 10),
-          ElevatedButton(
-            onPressed: () {
-              quizModel.signinAnonymously();
-            },
-            child: Row(mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-              Icon(Icons.account_circle, ),
-              const SizedBox(width: 10),
-              Text('Guest'),
-            ],),
-          ),
-          Text(response, style: TextStyle(color: responseColor)),
-        ],
-
-        
-      )
-    );
+        ),
+        appBar: AppBar(
+          title: const Text('Login'),
+        ));
   }
 }
-
-
-class ErrorScreen extends StatelessWidget {
-  const ErrorScreen({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const Placeholder();
-  }
-}
-
-

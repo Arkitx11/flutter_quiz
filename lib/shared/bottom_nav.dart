@@ -1,4 +1,3 @@
-
 import 'package:bottom_bar_matu/bottom_bar_matu.dart';
 import 'package:flutter/material.dart';
 
@@ -27,7 +26,3 @@ class BottomNavBar extends StatelessWidget {
         ]);
   }
 }
-
-
-
-
