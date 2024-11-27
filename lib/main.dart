@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_quiz/providers/navigaton_provider.dart';
 import 'package:flutter_quiz/routes.dart';
+import 'package:provider/provider.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
@@ -11,7 +13,10 @@ Future<void> main() async {
     anonKey: dotenv.env['SUPABASE_ANON_KEY']!,
   );
 
-  runApp(SafeArea(child: QuizApp()));
+  runApp(SafeArea(child: ChangeNotifierProvider(
+    create: (context) => NavigationProvider(),
+    child: QuizApp(),
+  )));
 }
 
 class QuizApp extends StatelessWidget {

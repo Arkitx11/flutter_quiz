@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_quiz/services/auth.dart';
+import 'package:flutter_quiz/shared/bottom_nav.dart';
 import 'package:ionicons/ionicons.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -8,6 +9,7 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      bottomNavigationBar: BottomNavBar(),
         appBar: AppBar(
       title: const Text('Home'),
       actions: [
